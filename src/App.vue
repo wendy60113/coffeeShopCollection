@@ -1,14 +1,16 @@
 <template>
-  <LandingPage/>
+  <ListPage/>
 </template>
 
 <script>
-import LandingPage from '@/view/landingPage'
+// import LandingPage from '@/view/landingPage'
+import ListPage from '@/view/listPage.vue'
 import "@/css/landingpage.scss"
 
 export default {
   components:{
-    LandingPage
+    // LandingPage,
+    ListPage
   }
 }
 </script>
