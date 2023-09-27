@@ -42,6 +42,16 @@ export default {
     components:{
         Button,
         ListItem
+    },
+    mounted(){
+        this.callStandApi('/cafelist')
+    },
+    methods:{
+        callStandApi(api) {
+            return this.$http.get(api)
+            .then(response => response)
+            .catch(error=> error)
+        },
     }
 }
 </script>
