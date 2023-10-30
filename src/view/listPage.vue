@@ -24,10 +24,11 @@
         <b-row>
             <b-col>
                 <ListItem
-                    :striped="'colored'"
-                />
-                <ListItem
-                    :striped="'light'"
+                    v-for="(item,index) in listTable"
+                    :key="'coffeeList-'+index"
+                    :striped="index%2==0?'colored':'light'"
+                    :title="item.name"
+                    :address="item.address"
                 />
             </b-col>
         </b-row>
@@ -38,19 +39,27 @@
 <script>
 import Button from '@/components/ButtonComponent'
 import ListItem from '@/components/CoffeeListitem'
+import getApi from '@/mixin/getApi'
 export default {
+    mixins:[getApi],
+    data:()=>({
+        listTable:[],
+    }),
     components:{
         Button,
         ListItem
     },
     mounted(){
-        this.callStandApi('/cafelist')
+        this.goSearch()
     },
     methods:{
-        callStandApi(api) {
-            return this.$http.get(api)
-            .then(response => response)
-            .catch(error=> error)
+        goSearch() {
+            this.gettheApi('/cafelist')
+                .then((res)=>{
+                    this.listTable = res.data
+                    console.log(res)
+                })
+
         },
     }
 }

@@ -1,13 +1,13 @@
 <template>
   <div class="listItem px-5 py-3" :class="striped">
     <b-row align-h="between">
-        <b-col>
+        <b-col cols="8">
             <b-row>
                 <b-col cols="12 mb-1">
-                    <span class="title">店名店名店名店名店名店名</span>
+                    <span class="title">{{title}}</span>
                 </b-col>
                 <b-col cols="12">
-                    <span class="address">地址地址</span>
+                    <span class="address">{{address}}</span>
                 </b-col>
             </b-row>
         </b-col>
@@ -32,7 +32,7 @@
 <script>
 import OptionBtn from '@/components/ButtonOption.vue'
 export default {
-    props:['striped'],
+    props:['striped','title','address'],
     components:{
         OptionBtn
     }
