@@ -11,6 +11,7 @@
                             :name="'咖啡廳列表'" 
                             :backgroundColor="'#C8B09C'" 
                             :textColor="'#fff'"
+                            @click.native="toList"
                         />
                     </b-col>
                     <b-col  cols="auto" class="mt-5">
@@ -22,7 +23,7 @@
                     </b-col>
                 </b-row>
             </section>
-            <parallax fixed="true">
+            <parallax :fixed="true">
                 <div class="bg"></div>
                 <div class="overlay"></div>
             </parallax>
@@ -62,6 +63,11 @@ export default {
         Parallax,
         Button,
         CoffeeImgitem
+    },
+    methods:{
+        toList(){
+            this.$router.push('/list')
+        }
     }
 }
 </script>

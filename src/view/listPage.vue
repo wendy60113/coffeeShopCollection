@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="header">
-        <parallax fixed="true">
+        <parallax :fixed="true">
             <div class="bg"></div>
             <div class="overlay"></div>
         </parallax>
@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import Parallax from 'vue-parallaxy'
 import Button from '@/components/ButtonComponent'
 import ListItem from '@/components/CoffeeListitem'
 import getApi from '@/mixin/getApi'
@@ -46,6 +47,7 @@ export default {
         listTable:[],
     }),
     components:{
+        Parallax,
         Button,
         ListItem
     },

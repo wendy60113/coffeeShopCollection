@@ -9,6 +9,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueAxios from 'vue-axios'
 import service from './api/response'
 
+import router from './route'
+
 Vue.use(VueAxios, service)
 
 // Make BootstrapVue available throughout your project
@@ -19,5 +21,6 @@ Vue.use(IconsPlugin)
 Vue.config.productionTip = false
 
 new Vue({
+  router,
   render: h => h(App),
 }).$mount('#app')
