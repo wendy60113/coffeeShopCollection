@@ -16,6 +16,7 @@
                 <b-col cols="auto">
                     <OptionBtn
                         :icon="'pencil-square'"
+                        @click.native="goEdit"
                     />
                 </b-col>
                 <b-col cols="auto">
@@ -35,6 +36,11 @@ export default {
     props:['striped','title','address'],
     components:{
         OptionBtn
+    },
+    methods:{
+        goEdit(){
+            this.$emit('goEdit')
+        }
     }
 }
 </script>

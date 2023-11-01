@@ -1,38 +1,153 @@
 <template>
   <div>
+    <div>
+
+    </div>
     <div class="header">
+        <section>
+            <h1>咖啡廳列表</h1>
+        </section>
         <parallax :fixed="true">
             <div class="bg"></div>
             <div class="overlay"></div>
         </parallax>
-        <section>
-            <h1>咖啡廳列表</h1>
-        </section>
-    </div>
-    <div>
-        <b-row align-h="center" class="py-5">
-                <b-col cols="auto">
-                    <Button 
-                        :name="'新增咖啡廳'" 
-                        :backgroundColor="'#C8B09C'" 
-                        :textColor="'#fff'"
-                    />
-                </b-col>
-        </b-row>
     </div>
     <div class="list">
         <b-row>
             <b-col>
+                <div>
+                    <b-row align-h="center" class="py-5">
+                            <b-col cols="auto">
+                                <Button 
+                                    :name="'新增咖啡廳'" 
+                                    :backgroundColor="'#C8B09C'" 
+                                    :textColor="'#fff'"
+                                    @click.native="goCreate"
+                                />
+                            </b-col>
+                    </b-row>
+                </div>
                 <ListItem
                     v-for="(item,index) in listTable"
                     :key="'coffeeList-'+index"
                     :striped="index%2==0?'colored':'light'"
                     :title="item.name"
                     :address="item.address"
+                    @goEdit="goEdit(item)"
                 />
             </b-col>
         </b-row>
     </div>
+    <!--新增咖啡廳-->
+    <b-modal v-model="modalControl.createControl" centered hide-header hide-footer size="sm">
+        <template #default>
+            <b-row>
+                <b-col>
+                    <label>新增咖啡廳</label>
+                </b-col>
+            </b-row>
+            <b-row class="mt-3">
+                <b-col>
+                    <Input
+                        v-model="createInput.name"
+                        :placeholder="'請輸入店名'"
+                        class="mb-3"
+                    />
+                    <Input
+                        v-model="createInput.address"
+                        :placeholder="'請輸入地址'"
+                        class="mb-3"
+                    />
+                </b-col>
+            </b-row>
+            <b-row align-h="end">
+                <!-- <b-col cols="auto">
+                    <Button
+                        :name="'刪除'"
+                        :size="'sm'"
+                        :backgroundColor="'#F17F5A'"
+                    />
+                </b-col> -->
+                <b-col cols="auto">
+                    <Button
+                        :name="'儲存'"
+                        :size="'sm'"
+                        @click.native="goSave"
+                    />
+                </b-col>
+            </b-row>
+        </template>
+    </b-modal>
+    <!--編輯咖啡廳-->
+    <b-modal v-model="modalControl.editControl" centered hide-header hide-footer size="sm">
+        <template #default>
+            <b-row>
+                <b-col>
+                    <label>編輯咖啡廳</label>
+                </b-col>
+            </b-row>
+            <b-row class="mt-3">
+                <b-col>
+                    <Input
+                        v-model="selectInput.name"
+                        :placeholder="'請輸入店名'"
+                        class="mb-3"
+                    />
+                    <Input
+                        v-model="selectInput.address"
+                        :placeholder="'請輸入地址'"
+                        class="mb-3"
+                    />
+                </b-col>
+            </b-row>
+            <b-row align-h="between">
+                <b-col cols="auto">
+                    <Button
+                        :name="'刪除'"
+                        :size="'sm'"
+                        :backgroundColor="'#F17F5A'"
+                        @click.native="goDelete"
+                    />
+                </b-col>
+                <b-col cols="auto">
+                    <Button
+                        :name="'儲存'"
+                        :size="'sm'"
+                        @click.native="goEditSave"
+                    />
+                </b-col>
+            </b-row>
+        </template>
+    </b-modal>
+    <!--刪除咖啡廳-->
+    <b-modal v-model="modalControl.deleteControl" centered hide-header hide-footer size="sm">
+        <template #default>
+            <b-row>
+                <b-col class="text-center">
+                    <label class="mt-5 mb-5">確認是否刪除</label>
+                </b-col>
+            </b-row>
+            <b-row align-h="around">
+                <b-col cols="auto">
+                    <Button
+                        :name="'取消'"
+                        :size="'sm'"
+                        :backgroundColor="'#fff'"
+                        :borderStyle="'1px solid #C8B09C'"
+                        :textColor="'#C8B09C'"
+                        @click.native="modalControl.deleteControl=false"
+                    />
+                </b-col>
+                <b-col cols="auto">
+                    <Button
+                        :name="'刪除'"
+                        :size="'sm'"
+                        @click.native="goDeleteSave"
+                    />
+                </b-col>
+            </b-row>
+        </template>
+    </b-modal>
   </div>
 </template>
 
@@ -41,15 +156,31 @@ import Parallax from 'vue-parallaxy'
 import Button from '@/components/ButtonComponent'
 import ListItem from '@/components/CoffeeListitem'
 import getApi from '@/mixin/getApi'
+import Input from '@/components/InputComponent'
 export default {
     mixins:[getApi],
     data:()=>({
         listTable:[],
+        modalControl:{
+            createControl:false,
+            editControl:false,
+            deleteControl:false
+        },
+        createInput:{
+            name:'',
+            address:''
+        },
+        selectInput:{
+            name:'',
+            address:'',
+            id:''
+        }
     }),
     components:{
         Parallax,
         Button,
-        ListItem
+        ListItem,
+        Input
     },
     mounted(){
         this.goSearch()
@@ -61,8 +192,59 @@ export default {
                     this.listTable = res.data
                     console.log(res)
                 })
-
         },
+        goCreate(){
+            this.modalControl.createControl=true
+        },
+        goSave(){
+            this.posttheApi('/cafelist',{
+                name:this.createInput.name,
+                address: this.createInput.address,
+                latitude: '',
+                longitude: ''
+            })
+                .then((res)=>{
+                    console.log(res)
+                    this.goSearch()
+                })
+                .finally(()=>{
+                    this.modalControl.createControl=false
+                })
+        },
+        goEdit(item){
+            this.modalControl.editControl=true
+            this.selectInput = item
+        },
+        goEditSave(){
+            this.puttheApi('/cafelist/'+this.selectInput.id,{
+                name: this.selectInput.name,
+                address: this.selectInput.address,
+                latitude: '',
+                longitude: ''
+            })
+                .then((res)=>{
+                    console.log(res)
+                    this.goSearch()
+                })
+                .finally(()=>{
+                    this.modalControl.editControl=false
+                })
+        },
+        goDelete(){
+            this.modalControl.editControl=false
+            this.modalControl.deleteControl=true
+        },
+        goDeleteSave(){
+            this.deletetheApi('/cafelist/'+this.selectInput.id)
+                .then((res)=>{
+                    console.log(res.data)
+                    this.goSearch()
+                })
+                .finally(()=>{
+                    this.modalControl.deleteControl=false
+                })
+        }
+
     }
 }
 </script>
@@ -102,6 +284,8 @@ export default {
     }
 }
 .list{
-    padding: 0 20%;
+    background-color: #fff;
+    padding: 0% 20%;
+    overflow: scroll;
 }
 </style>

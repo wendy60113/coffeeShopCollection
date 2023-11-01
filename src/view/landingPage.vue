@@ -47,6 +47,7 @@
                         :name="'查看更多'" 
                         :backgroundColor="'#C8B09C'" 
                         :textColor="'#fff'"
+                        @click.native="toList"
                     />
                 </b-col>
             </b-row>
@@ -62,12 +63,12 @@ export default {
     components:{
         Parallax,
         Button,
-        CoffeeImgitem
+        CoffeeImgitem,
     },
     methods:{
         toList(){
             this.$router.push('/list')
-        }
+        },
     }
 }
 </script>

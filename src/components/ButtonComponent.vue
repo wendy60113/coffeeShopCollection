@@ -1,12 +1,16 @@
 <template>
-  <div class="button" :style="{'background-color':backgroundColor,'color':textColor}">
+  <div 
+    class="button" 
+    :style="{'background-color':backgroundColor,'color':textColor,'border':borderStyle}"
+    :class="size=='sm'?'sm':''"
+  >
     {{name}}
   </div>
 </template>
 
 <script>
 export default {
-    props:['name','backgroundColor','textColor']
+    props:['name','backgroundColor','textColor','size','borderStyle']
 }
 </script>
 
@@ -20,6 +24,10 @@ export default {
     padding: 0.8rem 2.8rem;
     justify-content: center;
     align-items: center;
+}
+.sm{
+  padding: 0.5rem 2rem;
+  font-size: 0.9rem;
 }
 .button:hover{
     filter: brightness(90%);
