@@ -33,7 +33,9 @@
                     :striped="index%2==0?'colored':'light'"
                     :title="item.name"
                     :address="item.address"
+                    :favorite="item.favorite"
                     @goEdit="goEdit(item)"
+                    @goAddFavorite="goAddFavorite(item)"
                 />
             </b-col>
         </b-row>
@@ -243,6 +245,19 @@ export default {
                 .finally(()=>{
                     this.modalControl.deleteControl=false
                 })
+        },
+        goAddFavorite(item){
+            if(item.favorite=='1'){
+                //刪除
+            }else{
+                this.posttheApi('/favorite',{
+                    cafeshopId: item.id
+                })
+                    .then((res)=>{
+                        console.log(res.data)
+                        this.goSearch()
+                    })
+            }
         }
 
     }

@@ -21,7 +21,8 @@
                 </b-col>
                 <b-col cols="auto">
                     <OptionBtn
-                        :icon="'heart'"
+                        :icon="favorite=='1'?'heart-fill':'heart'"
+                        @click.native="goAddFavorite"
                     />
                 </b-col>
             </b-row>
@@ -33,13 +34,16 @@
 <script>
 import OptionBtn from '@/components/ButtonOption.vue'
 export default {
-    props:['striped','title','address'],
+    props:['striped','title','address','favorite'],
     components:{
         OptionBtn
     },
     methods:{
         goEdit(){
             this.$emit('goEdit')
+        },
+        goAddFavorite(){
+            this.$emit('goAddFavorite')
         }
     }
 }
