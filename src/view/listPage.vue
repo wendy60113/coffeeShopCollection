@@ -33,7 +33,7 @@
                     :striped="index%2==0?'colored':'light'"
                     :title="item.name"
                     :address="item.address"
-                    :favorite="item.favorite"
+                    :favorite="item.isFavorite"
                     @goEdit="goEdit(item)"
                     @goAddFavorite="goAddFavorite(item)"
                 />
@@ -189,7 +189,9 @@ export default {
     },
     methods:{
         goSearch() {
-            this.gettheApi('/cafelist')
+            this.posttheApi('/cafelist/query',{
+                userId:'1'
+            })
                 .then((res)=>{
                     this.listTable = res.data
                     console.log(res)
@@ -199,7 +201,7 @@ export default {
             this.modalControl.createControl=true
         },
         goSave(){
-            this.posttheApi('/cafelist',{
+            this.posttheApi('/cafelist/add',{
                 name:this.createInput.name,
                 address: this.createInput.address,
                 latitude: '',
@@ -247,11 +249,17 @@ export default {
                 })
         },
         goAddFavorite(item){
-            if(item.favorite=='1'){
+            if(item.isFavorite=='1'){
                 //刪除
+                this.deletetheApi('/favorite/1/'+item.id)
+                    .then((res)=>{
+                        console.log(res.data)
+                        this.goSearch()
+                    })
             }else{
                 this.posttheApi('/favorite',{
-                    cafeshopId: item.id
+                    cafeshopId: item.id,
+                    userId: '1'
                 })
                     .then((res)=>{
                         console.log(res.data)

@@ -12,8 +12,8 @@ export default {
       return this.$http.put(api,data)
           .then(response=>response)
     },
-    deletetheApi(api){
-      return this.$http.delete(api)
+    deletetheApi(api,data){
+      return this.$http.delete(api,data)
           .then(response=>response)
     }
   }
