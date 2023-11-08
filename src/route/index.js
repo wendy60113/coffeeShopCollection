@@ -21,7 +21,14 @@ const routes = [
         props: true,
         component: () =>
             import('../view/listPage.vue'),
-        },
+    },
+    {
+        path: '/favorite',
+        name: 'Favorite',
+        props: true,
+        component: () =>
+            import('../view/favoritePage.vue'),
+    },
     ]
 
     const router = new VueRouter({

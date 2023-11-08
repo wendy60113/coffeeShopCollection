@@ -6,6 +6,7 @@
 
 <script>
 import "@/css/landingpage.scss"
+import "@/css/listpage.scss"
 
 export default {
   mounted(){

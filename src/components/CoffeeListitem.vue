@@ -13,7 +13,7 @@
         </b-col>
         <b-col>
             <b-row align-h="end" style="height:100%" align-v="center">
-                <b-col cols="auto">
+                <b-col cols="auto" v-if="editView">
                     <OptionBtn
                         :icon="'pencil-square'"
                         @click.native="goEdit"
@@ -34,7 +34,16 @@
 <script>
 import OptionBtn from '@/components/ButtonOption.vue'
 export default {
-    props:['striped','title','address','favorite'],
+    props:{
+        striped: String,
+        title: String,
+        address: String,
+        favorite: String,
+        editView: {
+            type: Boolean,
+            default: true
+        }
+    },
     components:{
         OptionBtn
     },

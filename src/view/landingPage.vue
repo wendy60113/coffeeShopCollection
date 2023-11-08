@@ -19,6 +19,7 @@
                             :name="'我的最愛'" 
                             :backgroundColor="'#fff'" 
                             :textColor="'#4F453D'"
+                            @click.native="toFavorite"
                         />
                     </b-col>
                 </b-row>
@@ -28,7 +29,7 @@
                 <div class="overlay"></div>
             </parallax>
         </div>
-        <div class="recommendPage">
+        <!-- <div class="recommendPage">
             <h1>隨機推薦</h1>
             <b-row class="mt-5" align-h="around">
                 <b-col cols="auto" class="mb-3">
@@ -51,23 +52,26 @@
                     />
                 </b-col>
             </b-row>
-        </div>
+        </div> -->
     </div>
 </template>
 
 <script>
 import Parallax from 'vue-parallaxy'
 import Button from '@/components/ButtonComponent'
-import CoffeeImgitem from '@/components/CoffeeImgitem'
+// import CoffeeImgitem from '@/components/CoffeeImgitem'
 export default {
     components:{
         Parallax,
         Button,
-        CoffeeImgitem,
+        // CoffeeImgitem,
     },
     methods:{
         toList(){
             this.$router.push('/list')
+        },
+        toFavorite(){
+            this.$router.push('/favorite')
         },
     }
 }

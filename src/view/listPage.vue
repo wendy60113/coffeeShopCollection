@@ -1,7 +1,11 @@
 <template>
   <div>
-    <div>
-
+    <div class="menuButton">
+        <b-row align-h="end">
+            <b-col cols="auto" align-self="end" class="mb-5">
+                <MenuButton @click.native="toHome"/>
+            </b-col>
+        </b-row>
     </div>
     <div class="header">
         <section>
@@ -27,6 +31,11 @@
                             </b-col>
                     </b-row>
                 </div>
+                <template v-if="Loading">
+                    <div class="text-center">
+                        <b-spinner style="color:#C8B09C"></b-spinner>
+                    </div>
+                </template>
                 <ListItem
                     v-for="(item,index) in listTable"
                     :key="'coffeeList-'+index"
@@ -159,6 +168,7 @@ import Button from '@/components/ButtonComponent'
 import ListItem from '@/components/CoffeeListitem'
 import getApi from '@/mixin/getApi'
 import Input from '@/components/InputComponent'
+import MenuButton from '@/components/MenuButton'
 export default {
     mixins:[getApi],
     data:()=>({
@@ -176,25 +186,30 @@ export default {
             name:'',
             address:'',
             id:''
-        }
+        },
+        Loading:false
     }),
     components:{
         Parallax,
         Button,
         ListItem,
-        Input
+        Input,
+        MenuButton
     },
     mounted(){
         this.goSearch()
     },
     methods:{
         goSearch() {
+            this.Loading=true
             this.posttheApi('/cafelist/query',{
                 userId:'1'
             })
                 .then((res)=>{
                     this.listTable = res.data
-                    console.log(res)
+                })
+                .finally(()=>{
+                    this.Loading=false
                 })
         },
         goCreate(){
@@ -266,49 +281,11 @@ export default {
                         this.goSearch()
                     })
             }
-        }
+        },
+        toHome(){
+            this.$router.push('/home')
+        },
 
     }
 }
 </script>
-<style lang="scss">
-.header{
-    height: 200px;
-    .bg{
-        position: absolute;
-        background-image: url('../assets/listHeader.jpg');
-        background-position: center;
-        height: 200px;
-        width: 100%;
-    }
-    .overlay{
-        position: absolute;
-        background-color: rgba(0, 0, 0, 0.489);
-        height: 200px;
-        width: 100%;
-    }
-    section{
-        position: absolute;
-        width: 100%;
-        height: 200px;
-
-        h1{
-            margin: 0;
-            font-size: 3rem;
-            letter-spacing: 0.2rem;
-            text-align: center;
-            color: #fff;
-            font-family: 'Alata', sans-serif;
-            top: 60%;
-            left: 50%;
-            transform: translate(-50%,-50%);
-            position: absolute;
-        }
-    }
-}
-.list{
-    background-color: #fff;
-    padding: 0% 20%;
-    overflow: scroll;
-}
-</style>
