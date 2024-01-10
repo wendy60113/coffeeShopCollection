@@ -1,21 +1,17 @@
 <template>
   <div>
-    <div class="menuButton">
-        <b-row align-h="end">
-            <b-col cols="auto" align-self="end" class="mb-5">
-                <MenuButton @click.native="toHome"/>
-            </b-col>
-        </b-row>
-    </div>
-    <div class="header">
-        <section>
-            <h1>我的最愛列表</h1>
-        </section>
-        <parallax :fixed="true">
-            <div class="bg"></div>
-            <div class="overlay"></div>
-        </parallax>
-    </div>
+    <b-row class="mt-5 header" align-h="end">
+        <b-col cols="1" class="px-2">
+            <div class="title mt-5">
+                <span>我的最愛列表</span>
+            </div>
+        </b-col>
+        <b-col cols="auto">
+            <div class="clipped">
+                <img src="../assets/favorite_header.jpg"/>
+            </div>
+        </b-col>
+    </b-row>
     <div class="list">
         <b-row>                
             <template v-if="listTable.length==0">
@@ -43,19 +39,19 @@
 </template>
 
 <script>
-import Parallax from 'vue-parallaxy'
+// import Parallax from 'vue-parallaxy'
 import ListItem from '@/components/CoffeeListitem'
 import getApi from '@/mixin/getApi'
-import MenuButton from '@/components/MenuButton'
+// import MenuButton from '@/components/MenuButton'
 export default {
     mixins:[getApi],
     data:()=>({
         listTable:[]
     }),
     components:{
-        Parallax,
+        // Parallax,
         ListItem,
-        MenuButton
+        // MenuButton
     },
     mounted(){
         this.goSearch()

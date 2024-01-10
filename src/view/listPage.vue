@@ -1,31 +1,29 @@
 <template>
   <div>
-    <div class="menuButton">
-        <b-row align-h="end">
-            <b-col cols="auto" align-self="end" class="mb-5">
-                <MenuButton @click.native="toHome"/>
-            </b-col>
-        </b-row>
-    </div>
-    <div class="header">
-        <section>
-            <h1>咖啡廳列表</h1>
-        </section>
-        <parallax :fixed="true">
-            <div class="bg"></div>
-            <div class="overlay"></div>
-        </parallax>
-    </div>
+    <b-row class="mt-5 header" align-h="end">
+        <b-col cols="1" class="px-2">
+            <div class="title mt-5">
+                <span>咖啡廳列表</span>
+            </div>
+        </b-col>
+        <b-col cols="auto">
+            <div class="clipped">
+                <img src="../assets/list_header.jpg"/>
+            </div>
+        </b-col>
+    </b-row>
     <div class="list">
         <b-row>
             <b-col>
                 <div>
                     <b-row align-h="center" class="py-5">
                             <b-col cols="auto">
-                                <Button 
-                                    :name="'新增咖啡廳'" 
-                                    :backgroundColor="'#C8B09C'" 
-                                    :textColor="'#fff'"
+                                <Button
+                                    :name="'新增咖啡廳'"
+                                    :borderStyle="'1px solid #979797'"
+                                    :backgroundColor="'#fff'"
+                                    :textColor="'#979797'"
+                                    :borderRound="false"
                                     @click.native="goCreate"
                                 />
                             </b-col>
@@ -163,12 +161,12 @@
 </template>
 
 <script>
-import Parallax from 'vue-parallaxy'
+// import Parallax from 'vue-parallaxy'
 import Button from '@/components/ButtonComponent'
 import ListItem from '@/components/CoffeeListitem'
 import getApi from '@/mixin/getApi'
 import Input from '@/components/InputComponent'
-import MenuButton from '@/components/MenuButton'
+// import MenuButton from '@/components/MenuButton'
 export default {
     mixins:[getApi],
     data:()=>({
@@ -190,11 +188,11 @@ export default {
         Loading:false
     }),
     components:{
-        Parallax,
+        // Parallax,
         Button,
         ListItem,
         Input,
-        MenuButton
+        // MenuButton
     },
     mounted(){
         this.goSearch()

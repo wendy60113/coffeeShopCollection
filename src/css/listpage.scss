@@ -1,34 +1,26 @@
 .header{
-    height: 200px;
-    .bg{
-        position: absolute;
-        background-image: url('../assets/listHeader.jpg');
-        background-position: center;
-        height: 200px;
-        width: 100%;
-    }
-    .overlay{
-        position: absolute;
-        background-color: rgba(0, 0, 0, 0.489);
-        height: 200px;
-        width: 100%;
-    }
-    section{
-        position: absolute;
-        width: 100%;
-        height: 200px;
-
-        h1{
-            margin: 0;
-            font-size: 3rem;
-            letter-spacing: 0.2rem;
-            text-align: center;
-            color: #fff;
-            font-family: 'Alata', sans-serif;
-            top: 60%;
-            left: 50%;
-            transform: translate(-50%,-50%);
+    .title{
+        // position: absolute;
+        color: #979797;
+        font-size: 30px;
+        font-weight: 200;
+        letter-spacing: 0.5rem;
+        span{
             position: absolute;
+            z-index: 1;
+        }
+    }
+    .clipped {
+        margin: 0 15rem 0 0;
+        width: 800px;
+        height: 200px;
+        background-size: cover;
+        -webkit-clip-path: url(#rect-clip);
+        clip-path: url(#rect-clip);
+        img{
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
         }
     }
 }

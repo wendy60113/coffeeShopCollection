@@ -61,11 +61,11 @@ export default {
 <style lang="scss" scoped>
 .listItem{
     .title{
-        color: #4F453D;
+        color: #333;
         font-weight: 500;
     }
     .address{
-        color: #4F453D;
+        color: #333;
         font-weight: 300;
     }
 }
@@ -73,6 +73,6 @@ export default {
     background-color: #fff;
 }
 .colored{
-    background-color: #FBF8F6;
+    background-color: rgba(151, 151, 151, 0.07);
 }
 </style>

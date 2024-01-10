@@ -1,6 +1,6 @@
 <template>
   <div class="optionbtn">
-    <b-icon :icon="icon" style="color: #C8B09C"></b-icon>
+    <b-icon :icon="icon" style="color: #979797"></b-icon>
   </div>
 </template>
 

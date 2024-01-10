@@ -1,7 +1,7 @@
 <template>
   <div 
     class="button" 
-    :style="{'background-color':backgroundColor,'color':textColor,'border':borderStyle}"
+    :style="{'background-color':backgroundColor,'color':textColor,'border':borderStyle,'border-radius':borderRound?'3.125rem':'0rem'}"
     :class="size=='sm'?'sm':''"
   >
     {{name}}
@@ -10,7 +10,7 @@
 
 <script>
 export default {
-    props:['name','backgroundColor','textColor','size','borderStyle']
+    props:['name','backgroundColor','textColor','size','borderStyle','borderRound']
 }
 </script>
 
@@ -24,6 +24,7 @@ export default {
     padding: 0.8rem 2.8rem;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 .sm{
   padding: 0.5rem 2rem;

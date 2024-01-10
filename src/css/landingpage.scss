@@ -1,54 +1,88 @@
 @import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 body{
     margin: 0;
     padding: 0;
-    font-family: 'Noto Sans TC', sans-serif;
+    font-family: 'Noto Serif TC', serif !important;
 }
 .landing{
-    height: 100vh;
-    .bg{
-        position: absolute;
-        background-image: url('../assets/landing.jpg');
-        background-position: center;
+    overflow-x: hidden;
+    .info{
         height: 100%;
-        width: 100%;
+        padding: 20% 0 10% 0;
+        align-content: space-between;
     }
-    .overlay{
-        position: absolute;
-        background-color: rgba(0, 0, 0, 0.489);
-        height: 100%;
-        width: 100%;
+    .title{
+        text-align: right;
+        span{
+            color: #979797;
+            font-size: 2rem;
+            font-weight: 200;
+            // letter-spacing: 1rem;
+        }
     }
-    section{
+    .svg{
         position: absolute;
-        transform: translate(-50%,-50%);
-        top: 50%;
-        left: 50%;
-        width: 100%;
+        width: 0;
+        height: 0;
+    }
+    .clipped {
+        width: 450px;
+        height: 507px;
+        background-size: cover;
+        -webkit-clip-path: url(#my-clip-path);
+        clip-path: url(#my-clip-path);
+    
+        img{
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    }
 
-        h1{
-            margin: 0;
-            font-size: 5rem;
-            text-align: center;
-            color: #fff;
-            font-family: 'Alata', sans-serif;
+}
+.recommend{
+    margin-top: 5% !important;
+    .title{
+        span{
+            color: #979797;
+            font-size: 1.4rem;
+            font-weight: 200;
+        }
+    }
+    .svg{
+        position: absolute;
+        width: 0;
+        height: 0;
+    }
+    .clipped {
+        width: 250px;
+        height: 300px;
+        background-size: cover;
+        -webkit-clip-path: url(#rect-clip);
+        clip-path: url(#rect-clip);
+    
+        img{
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .shop_card{
+        margin-top: 3%;
+        .title{
+            color: #979797;
         }
     }
 }
-
-.recommendPage{
-    background-color: #fff;
-    // height: 100vh;
-    padding: 5% 20%;
-    
-    h1{
-        margin: 0;
-        font-size: 4rem;
-        text-align: center;
-        color: #4F453D;
-        font-weight: 300;
-        letter-spacing: 0.5rem;
+@media (max-width: 576px) {
+    .landing {
+        .clipped{
+            scale: 0.8;
+        }
+        .title{
+            margin-bottom: 20%;
+        }
     }
-}
+  }
