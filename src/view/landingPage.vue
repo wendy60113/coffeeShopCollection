@@ -49,7 +49,6 @@
             <b-col cols="12" class="title text-center">
                 <span>隨 機 推 薦</span>
             </b-col>
-            
             <b-col
                 v-for="(item,idx) in recommendData"
                 :key="'shop-'+idx"
@@ -72,30 +71,18 @@
 </template>
 
 <script>
-// import Parallax from 'vue-parallaxy'
 import Button from '@/components/ButtonComponent'
-// import CoffeeImgitem from '@/components/CoffeeImgitem'
+import getApi from '@/mixin/getApi'
 export default {
+    mixins:[getApi],
     data:()=>({
-        recommendData:[
-            {
-                img:'shop_bg_1',
-                name:'柴吉他。咖啡'
-            },
-            {
-                img:'shop_bg_2',
-                name:'Fuelwood Coffee 燃木咖啡研究所'
-            },
-            {
-                img:'shop_bg_3',
-                name:'Café Strada 步道咖啡'
-            },
-        ]
+        recommendData:[],
     }),
     components:{
-        // Parallax,
         Button,
-        // CoffeeImgitem,
+    },
+    mounted(){
+        this.getDetail()
     },
     methods:{
         toList(){
@@ -103,6 +90,24 @@ export default {
         },
         toFavorite(){
             this.$router.push('/favorite')
+        },
+        getDetail() {
+            this.posttheApi('/cafelist/query',{
+                userId:'1'
+            })
+                .then((res)=>{
+                    for(let i=0;i<3;i++){
+                        let num
+                        num = Math.floor(Math.random() * res.data.length)+1
+                        this.recommendData.push({
+                            img:'shop_bg_'+(this.recommendData.length+1),
+                            name: res.data[num-1].name
+                        })
+                    }
+                })
+                .finally(()=>{
+                    this.Loading=false
+                })
         },
     }
 }

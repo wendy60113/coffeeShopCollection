@@ -176,13 +176,11 @@
 </template>
 
 <script>
-// import Parallax from 'vue-parallaxy'
 import Button from '@/components/ButtonComponent'
 import ListItem from '@/components/CoffeeListitem'
 import getApi from '@/mixin/getApi'
 import Input from '@/components/InputComponent'
 import OptionBtn from '@/components/ButtonOption.vue'
-// import MenuButton from '@/components/MenuButton'
 export default {
     mixins:[getApi],
     data:()=>({
@@ -204,11 +202,9 @@ export default {
         Loading:false
     }),
     components:{
-        // Parallax,
         Button,
         ListItem,
         Input,
-        // MenuButton
         OptionBtn
     },
     mounted(){

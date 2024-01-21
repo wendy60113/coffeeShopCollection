@@ -46,20 +46,16 @@
 </template>
 
 <script>
-// import Parallax from 'vue-parallaxy'
 import ListItem from '@/components/CoffeeListitem'
 import getApi from '@/mixin/getApi'
 import OptionBtn from '@/components/ButtonOption.vue'
-// import MenuButton from '@/components/MenuButton'
 export default {
     mixins:[getApi],
     data:()=>({
         listTable:[]
     }),
     components:{
-        // Parallax,
         ListItem,
-        // MenuButton
         OptionBtn
     },
     mounted(){
