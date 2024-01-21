@@ -1,5 +1,12 @@
 <template>
   <div>
+    <div class="homeBtn">
+        <OptionBtn
+            :icon="'house-door-fill'"
+            :size="'lg'"
+            @click.native="toHome"
+        />
+    </div>
     <b-row class="mt-5 header" align-h="end">
         <b-col cols="1" class="px-2">
             <div class="title mt-5">
@@ -42,6 +49,7 @@
 // import Parallax from 'vue-parallaxy'
 import ListItem from '@/components/CoffeeListitem'
 import getApi from '@/mixin/getApi'
+import OptionBtn from '@/components/ButtonOption.vue'
 // import MenuButton from '@/components/MenuButton'
 export default {
     mixins:[getApi],
@@ -52,6 +60,7 @@ export default {
         // Parallax,
         ListItem,
         // MenuButton
+        OptionBtn
     },
     mounted(){
         this.goSearch()
