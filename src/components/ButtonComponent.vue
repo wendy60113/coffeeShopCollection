@@ -2,7 +2,7 @@
   <div 
     class="button" 
     :style="{'background-color':backgroundColor,'color':textColor,'border':borderStyle,'border-radius':borderRound?'3.125rem':'0rem'}"
-    :class="size=='sm'?'sm':''"
+    :class="size?size:''"
   >
     {{name}}
   </div>
@@ -31,10 +31,10 @@ export default {
   font-size: 0.9rem;
 }
 .button:hover{
-    filter: brightness(90%);
+    filter: brightness(95%);
 }
 .button:active{
-    filter: brightness(80%);
+    filter: brightness(95%);
     scale: 0.95;
 }
 </style>

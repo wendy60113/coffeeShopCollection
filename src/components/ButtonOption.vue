@@ -21,10 +21,10 @@ export default {
     cursor: pointer;
 }
 .optionbtn:hover{
-    background-color: #f3ece7;
+    background-color: rgba(151, 151, 151, 0.1);
 }
 .optionbtn:active{
     scale: 0.95;
-    background-color: #eaded6;
+    background-color: rgba(151, 151, 151, 0.1);
 }
 </style>

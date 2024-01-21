@@ -31,7 +31,7 @@
                 </div>
                 <template v-if="Loading">
                     <div class="text-center">
-                        <b-spinner style="color:#C8B09C"></b-spinner>
+                        <b-spinner style="color:#adadad"></b-spinner>
                     </div>
                 </template>
                 <ListItem
@@ -81,6 +81,8 @@
                     <Button
                         :name="'儲存'"
                         :size="'sm'"
+                        :borderRound="true"
+                        :backgroundColor="'#99D9E2'"
                         @click.native="goSave"
                     />
                 </b-col>
@@ -115,6 +117,7 @@
                         :name="'刪除'"
                         :size="'sm'"
                         :backgroundColor="'#F17F5A'"
+                        :borderRound="true"
                         @click.native="goDelete"
                     />
                 </b-col>
@@ -122,6 +125,8 @@
                     <Button
                         :name="'儲存'"
                         :size="'sm'"
+                        :borderRound="true"
+                        :backgroundColor="'#99D9E2'"
                         @click.native="goEditSave"
                     />
                 </b-col>
@@ -142,15 +147,18 @@
                         :name="'取消'"
                         :size="'sm'"
                         :backgroundColor="'#fff'"
-                        :borderStyle="'1px solid #C8B09C'"
-                        :textColor="'#C8B09C'"
+                        :borderStyle="'1px solid #979797'"
+                        :textColor="'#979797'"
+                        :borderRound="true"
                         @click.native="modalControl.deleteControl=false"
                     />
                 </b-col>
                 <b-col cols="auto">
                     <Button
-                        :name="'刪除'"
+                        :name="'確認'"
                         :size="'sm'"
+                        :borderRound="true"
+                        :backgroundColor="'#99D9E2'"
                         @click.native="goDeleteSave"
                     />
                 </b-col>
