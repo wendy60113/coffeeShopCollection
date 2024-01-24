@@ -53,6 +53,19 @@
                 />
             </b-col>
         </b-row>
+        <b-row class="my-5">
+            <b-col>
+                <b-pagination
+                    v-model="currentPage"
+                    :total-rows="rows"
+                    :per-page="10"
+                    pills
+                    align="center"
+                    size="sm"
+                    @input="goSearch"
+                ></b-pagination>
+            </b-col>
+        </b-row>
     </div>
     <!--新增咖啡廳-->
     <b-modal v-model="modalControl.createControl" centered hide-header hide-footer size="sm">
@@ -199,7 +212,9 @@ export default {
             address:'',
             id:''
         },
-        Loading:false
+        Loading:false,
+        currentPage:1,
+        rows:0
     }),
     components:{
         Button,
@@ -213,11 +228,12 @@ export default {
     methods:{
         goSearch() {
             this.Loading=true
-            this.posttheApi('/cafelist/query',{
+            this.posttheApi('/cafelist/query?page='+this.currentPage,{
                 userId:'1'
             })
                 .then((res)=>{
-                    this.listTable = res.data
+                    this.listTable = res.data.data
+                    this.rows=res.data.pagination.totalItems
                 })
                 .finally(()=>{
                     this.Loading=false

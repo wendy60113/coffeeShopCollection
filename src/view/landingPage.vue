@@ -98,10 +98,10 @@ export default {
                 .then((res)=>{
                     for(let i=0;i<3;i++){
                         let num
-                        num = Math.floor(Math.random() * res.data.length)+1
+                        num = Math.floor(Math.random() * res.data.data.length)+1
                         this.recommendData.push({
                             img:'shop_bg_'+(this.recommendData.length+1),
-                            name: res.data[num-1].name
+                            name: res.data.data[num-1].name
                         })
                     }
                 })
